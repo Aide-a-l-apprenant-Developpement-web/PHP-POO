@@ -1,74 +1,77 @@
 <?php
 
+// Vehicle.php
+
 class Vehicle
 {
-    protected  int $currentSpeed = 0;
+    protected string $color;
+    protected int $currentSpeed;
+    protected int $nbSeats;
+    protected int $nbWheels;
 
-    public function __construct(
-        protected  string $color,
-        protected  int $nbSeats,
-        protected  int $nbWheels,
-    ) {}
-
-    /**
-     * @return int
-     */
-    public function getNbWheels(): int
+    public function __construct(string $color, int $nbSeats)
     {
-        return $this->nbWheels;
+        $this->color = $color;
+        $this->nbSeats = $nbSeats;
     }
 
-    /**
-     * @return int
-     */
+    public function forward(): string
+    {
+        $this->currentSpeed = 15;
+        return "Go !";
+    }
+
+    public function brake(): string
+    {
+        $sentence = "";
+        while ($this->currentSpeed > 0) {
+            $this->currentSpeed--;
+            $sentence .= "Brake !!!";
+        }
+
+        $sentence .= "I'm stopped !";
+        return $sentence;
+    }
+
     public function getCurrentSpeed(): int
     {
         return $this->currentSpeed;
     }
 
-    /**
-     * @return string
-     */
+    public function setCurrentSpeed(int $currentSpeed): void
+    {
+        if($currentSpeed >= 0){
+            $this->currentSpeed = $currentSpeed;
+        }
+    }
+
     public function getColor(): string
     {
         return $this->color;
     }
 
-    /**
-     * @return int
-     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
     public function getNbSeats(): int
     {
         return $this->nbSeats;
     }
 
-    /**
-     * @return string
-     */
-    public function start(): string
+    public function setNbSeats(int $nbSeats): void
     {
-        return "Tu es à l'arrêt !";
+        $this->nbSeats = $nbSeats;
     }
 
-    /**
-     * @return string
-     */
-    public function forward(): string
+    public function getNbWheels(): int
     {
-        $this->currentSpeed += 10;
-
-        return "Tu accélères. Vitesse actuelle : ".$this->currentSpeed." km/H";
+        return $this->nbWheels;
     }
 
-    /**
-     * @return string
-     */
-    public function brake(): string
+    public function setNbWheels(int $nbWheels): void
     {
-        $this->currentSpeed -= 10;
-        if($this->currentSpeed == 0){
-            return "Tu freines. Tu es à l'arrêt";
-        }
-        return "Tu freines. Vitesse actuelle : ".$this->currentSpeed." km/H";
+        $this->nbWheels = $nbWheels;
     }
 }
