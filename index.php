@@ -4,6 +4,10 @@ require_once 'Bicycle.php';
 require_once 'Car.php';
 require_once 'Truck.php';
 
+require_once 'PedestrianWay.php';
+require_once 'MotorWay.php';
+require_once 'ResidentialWay.php';
+
 /* Moving bike -------------------------------------------------------------------->
 --------------------------------------------------------------------------------- */
 $bike1 = new Bicycle("red", 1);
@@ -47,4 +51,24 @@ echo $truck1->checkIfFull();
 
 echo "<br> Je vérifie le chargement du camion rouge : ";
 echo $truck2->checkIfFull();
+
+
+
+
+/* QUETE 3 */
+$motorWay = new MotorWay();
+$motorWay->addVehicle($truck2);
+$motorWay->addVehicle($car1);
+$motorWay->addVehicle($bike1);
+var_dump($motorWay->getCurrentVehicles());
+
+$residentialWay = new ResidentialWay();
+$residentialWay->addVehicle($truck2);
+var_dump($residentialWay->getCurrentVehicles());
+
+
+$pedestrianWay = new PedestrianWay();
+$pedestrianWay->addVehicle($bike1);
+var_dump($pedestrianWay->getCurrentVehicles());
+
 
