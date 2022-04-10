@@ -26,6 +26,17 @@ $car2 = new Car("bleu", 5, "fuel");
 
 // Moving car
 echo "<h1>Voiture</h1>";
+try{
+    echo $car1->start().'<br>';
+} catch (Exception $e){
+    echo $e->getMessage();
+} finally {
+    echo "Ma voiture roule comme un donut <br>";
+    echo "J'enlève le frein à main <br>";
+    $car1->setParkBrake(1).'<br>';
+}
+
+
 echo $car1->forward();
 echo '<br> Vitesse de la voiture noir: ' . $car1->getCurrentSpeed() . ' km/h' . '<br>';
 echo $car1->brake();
